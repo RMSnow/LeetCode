@@ -3,35 +3,20 @@
  */
 public class Problem5 {
     public String longestPalindrome(String s) {
-        //Solution1: Time limited
+        //Solution
+//        int start = 0, end = 0;
+//        for (int i = 0; i < s.length(); i++) {
+//            int len1 = expandAroundCenter(s, i, i);
+//            int len2 = expandAroundCenter(s, i, i + 1);
+//            int len = Math.max(len1, len2);
+//            if (len > end - start) {
+//                start = i - (len - 1) / 2;
+//                end = i + len / 2;
+//            }
+//        }
+//        return s.substring(start, end + 1);
 
-//        if (isPalindrome(s))
-//            return s;
-//
-//        int n = s.length();
-//        String sub1 = s.substring(0, n - 1);
-//        String sub2 = s.substring(1, n);
-//
-//        String longestOfSub1 = longestPalindrome(sub1);
-//        if (longestOfSub1 != null && longestOfSub1.length() == n - 1)
-//            return longestOfSub1;
-//
-//        String longestOfSub2 = longestPalindrome(sub2);
-//
-//        if (longestOfSub1 == null && longestOfSub2 == null)
-//            return null;
-//
-//        if (longestOfSub1 != null && longestOfSub2 == null)
-//            return longestOfSub1;
-//
-//        if (longestOfSub1 == null && longestOfSub2 != null)
-//            return longestOfSub2;
-//
-//        int n1 = longestOfSub1.length();
-//        int n2 = longestOfSub2.length();
-//        return (n1 > n2) ? longestOfSub1 : longestOfSub2;
-
-        //Solution2
+        //My Answer
         int n = s.length();
         for (int i = 0; i < n; i++) {
             int lengthOfSub = n - i;
@@ -45,22 +30,21 @@ public class Problem5 {
     }
 
     public boolean isPalindrome(String s) {
-//        int n = s.length();
-//
-//        if (n == 0 || n == 1)
-//            return true;
-//
-//        if (s.charAt(0) != s.charAt(n - 1))
-//            return false;
-//
-//        return isPalindrome(s.substring(1, n - 1));
-
         int n = s.length();
         for (int i = 0; i <= (n - 1) / 2; i++) {
             if (s.charAt(i) != s.charAt(n - 1 - i))
                 return false;
         }
         return true;
+    }
+
+    private int expandAroundCenter(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
+        }
+        return R - L - 1;
     }
 
     public static void main(String[] args) {
