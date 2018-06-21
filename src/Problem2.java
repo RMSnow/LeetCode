@@ -7,13 +7,13 @@ public class Problem2 {
 
         long digit = 0;
         while (l1 != null) {
-            num1 += Math.pow(10, digit) * l1.val;
+            num1 += Math.pow(10, digit) * l1.longVal;
             l1 = l1.next;
             digit++;
         }
         digit = 0;
         while (l2 != null) {
-            num2 += Math.pow(10, digit) * l2.val;
+            num2 += Math.pow(10, digit) * l2.longVal;
             l2 = l2.next;
             digit++;
         }
@@ -92,27 +92,10 @@ public class Problem2 {
 
         ListNode sum = new Problem2().addTwoNumbers(l1, l2);
         while (sum != null) {
-            System.out.printf(sum.val + " -> ");
+            System.out.printf(sum.longVal + " -> ");
             sum = sum.next;
         }
 
 //        System.out.printf((long) (Math.log(1000) / Math.log(10)));
-    }
-}
-
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- * long val;
- * ListNode next;
- * ListNode(long x) { val = x; }
- * }
- */
-class ListNode {
-    long val;
-    ListNode next;
-
-    ListNode(long x) {
-        val = x;
     }
 }
